@@ -3,6 +3,11 @@ require "faraday"
 
 module GmoPaymentGateway
   class Client
+    class Response
+      def initialize(response)
+      end
+    end
+
     attr_reader *%i(faraday shop_id shop_pass)
 
     def initialize(url, shop_id, shop_pass)
@@ -19,7 +24,7 @@ module GmoPaymentGateway
         PayType:  pay_type,
       }
 
-      CGI.parse(response.body).map {|k, v| {k => v[0]}}.inject(&:merge)
+      Response.new response
     end
   end
 end
