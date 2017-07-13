@@ -19,6 +19,10 @@ module GmoPaymentGateway
       CGI.parse(raw_body).map {|k, v| {k => v[0]}}.inject(&:merge)
     end
 
+    def connection_error?
+      body["ErrInfo"].include? "M01002002"
+    end
+
     def error?
       body.key? "ErrInfo"
     end
