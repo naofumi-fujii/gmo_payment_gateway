@@ -13,7 +13,7 @@ RSpec.describe GmoPaymentGateway do
 
   describe "GmoPaymentGateway::Client" do
     describe "#search_trade_multi" do
-      subject { client.search_trade_multi(order_id, pay_type) }
+      subject { client.search_trade_multi(order_id, pay_type).body }
 
       context "pay_type" do
 
